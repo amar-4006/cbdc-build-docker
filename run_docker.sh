@@ -2,6 +2,7 @@
 
 # Fixed image name
 IMAGE_NAME="amarpreetsingh/opencbdc-tx-dev"
+IMAGE_TAG="v1.1"
 
 # Fixed host directory path
 CONTAINER_DIR="/home/dev/work"
@@ -35,6 +36,14 @@ while [[ "$#" -gt 0 ]]; do
     esac
 done
 
+if ! docker image inspect "$IMAGE_NAME:$IMAGE_TAG" &> /dev/null; then
+    echo "Image $IMAGE_NAME:$IMAGE_TAG not found locally. Pulling from Docker Hub..."
+    docker pull "$IMAGE_NAME:$IMAGE_TAG"
+else
+    echo "Image $IMAGE_NAME:$IMAGE_TAG already exists locally."
+fi
+
+
 # Construct the Docker run command
 DOCKER_CMD="docker run --rm -it ${MOUNTS[@]} \
    -e LOCAL_USER_ID=$(id -u) \
@@ -45,7 +54,7 @@ if [ -n "$CONTAINER_NAME" ]; then
     DOCKER_CMD="$DOCKER_CMD --name $CONTAINER_NAME"
 fi
 
-DOCKER_CMD="$DOCKER_CMD $IMAGE_NAME"
+DOCKER_CMD="$DOCKER_CMD $IMAGE_NAME:$IMAGE_TAG"
 
 # If a script is provided, append it to the Docker command
 if [ -n "$SCRIPT_PATH" ]; then
