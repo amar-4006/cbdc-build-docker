@@ -34,7 +34,7 @@ This repository provides a streamlined process for developers to pull and run a 
 8. **Verify Successful Setup**
 
    ```bash
-   work$
+   dev@31e4c68d5bb6:~/work$
    ```
 10. **Clone the OpenCBDC-Tx Repository**
 
