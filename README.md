@@ -14,7 +14,7 @@ This repository provides a streamlined process for developers to pull and run a 
    Clone this repository to your local machine:
 
    ```bash
-   git clone git@github.com:amar-4006/cbdc-build-docker.git
+   git clone https://github.com/amar-4006/cbdc-build-docker.git
    ```
 2. **Log in to Docker**
 
